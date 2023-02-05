@@ -2,10 +2,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-base-100 shadow flex flex-row justify-between">
+    <div className="flex flex-row justify-between shadow navbar bg-base-100">
       <Link
         href="/dashboard"
-        className="btn btn-ghost normal-case text-lg no-underline"
+        className="text-lg no-underline normal-case btn btn-ghost"
       >
         Dashboard
       </Link>

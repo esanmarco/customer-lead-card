@@ -5,7 +5,7 @@ export default function Dashboard() {
     <>
       <label
         htmlFor="new-card"
-        className="btn btn-primary gap-3 w-full md:w-fit"
+        className="w-full gap-3 btn btn-primary md:w-fit"
       >
         Create Customer
         <svg
@@ -26,11 +26,11 @@ export default function Dashboard() {
 
       <AddNewCard />
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-5 md:mt-10">
-        <div className="card bg-base-200 shadow">
+      <div className="grid grid-cols-1 gap-4 mt-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-10">
+        <div className="shadow card bg-base-200">
           <div className="card-body">
-            <h2 className="card-title m-0">Customer Full Name</h2>
-            <p className="card-subtitle m-0">Customer Company Name</p>
+            <h2 className="m-0 card-title">Customer Full Name</h2>
+            <p className="m-0 card-subtitle">Customer Company Name</p>
             <ul className="m-0">
               <li>
                 <a href={`mailto:hello@gmail.com`} className="text-accent">
@@ -39,7 +39,7 @@ export default function Dashboard() {
               </li>
               <li>480-555-1212</li>
             </ul>
-            <p className="m-0 pt-4 border-t border-gray-700 text-sm">
+            <p className="pt-4 m-0 text-sm border-t border-gray-700">
               Customer Notes
             </p>
           </div>

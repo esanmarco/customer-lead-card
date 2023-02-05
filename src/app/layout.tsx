@@ -9,7 +9,7 @@ export default function RootLayout({
     <html lang="en" data-theme="night">
       <head />
       <body>
-        <div className="prose w-full max-w-none">{children}</div>
+        <div className="w-full prose max-w-none">{children}</div>
       </body>
     </html>
   );
