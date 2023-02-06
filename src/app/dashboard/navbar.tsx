@@ -1,6 +1,8 @@
+import getSession from "@/server/utils/getSession";
 import Link from "next/link";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await getSession();
   return (
     <div className="flex flex-row justify-between shadow navbar bg-base-100">
       <Link
@@ -12,7 +14,7 @@ export default function Navbar() {
 
       <div className="avatar placeholder-slate-100">
         <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
-          <img className="m-0" src="https://placeimg.com/192/192/people" />
+          <img className="m-0" src={session?.user?.image ?? ""} />
         </div>
       </div>
     </div>

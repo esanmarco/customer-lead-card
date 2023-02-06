@@ -1,3 +1,4 @@
+import QueryWrapper from "./components/queryWrapper";
 import "./globals.css";
 
 export default function RootLayout({
@@ -9,7 +10,9 @@ export default function RootLayout({
     <html lang="en" data-theme="night">
       <head />
       <body>
-        <div className="w-full prose max-w-none">{children}</div>
+        <div className="w-full prose max-w-none">
+          <QueryWrapper>{children}</QueryWrapper>
+        </div>
       </body>
     </html>
   );
