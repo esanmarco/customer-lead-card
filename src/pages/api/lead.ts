@@ -21,7 +21,6 @@ export default async function handler(
     return res.status(400).json({ error: "Missing name or email" });
   }
 
-  // create new lead from prisma based on body and owner: session.user.email
   const newLead = await prisma.lead.create({
     data: {
       ...body,
