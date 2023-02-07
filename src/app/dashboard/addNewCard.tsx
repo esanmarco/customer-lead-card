@@ -1,34 +1,23 @@
 "use client";
 
+import { useLeadStore } from "@/stores/useLeadStore";
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
 
 export default function AddNewCard() {
-  const [newLead, setNewLead] = useState({
-    name: "",
-    companyName: "",
-    email: "",
-    phone: "",
-  });
+  const { name, companyName, email, phone } = useLeadStore();
 
   const { mutate, isLoading } = useMutation(["new-lead"], async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lead`, {
       method: "POST",
-      body: JSON.stringify(newLead),
+      body: JSON.stringify({
+        name,
+        companyName,
+        email,
+        phone,
+      }),
     });
-    const data = await res.json();
-    setNewLead({
-      name: "",
-      companyName: "",
-      email: "",
-      phone: "",
-    });
-    return data;
+    return await res.json();
   });
-
-  const handleUpdateState = (e: any) => {
-    setNewLead({ ...newLead, [e.target.name]: e.target.value });
-  };
 
   return (
     <>
@@ -42,8 +31,10 @@ export default function AddNewCard() {
               placeholder="Full Name"
               className="w-full input input-bordered"
               name="name"
-              value={newLead.name}
-              onChange={(e: any) => handleUpdateState(e)}
+              value={name}
+              onChange={(e: any) =>
+                useLeadStore.setState({ name: e.target.value })
+              }
             />
 
             <input
@@ -51,8 +42,10 @@ export default function AddNewCard() {
               placeholder="Company Name"
               className="w-full input input-bordered"
               name="companyName"
-              value={newLead.companyName}
-              onChange={(e: any) => handleUpdateState(e)}
+              value={companyName}
+              onChange={(e: any) =>
+                useLeadStore.setState({ companyName: e.target.value })
+              }
             />
 
             <input
@@ -60,8 +53,10 @@ export default function AddNewCard() {
               placeholder="Customer Email"
               className="w-full input input-bordered"
               name="email"
-              value={newLead.email}
-              onChange={(e: any) => handleUpdateState(e)}
+              value={email}
+              onChange={(e: any) =>
+                useLeadStore.setState({ email: e.target.value })
+              }
             />
 
             <input
@@ -69,8 +64,10 @@ export default function AddNewCard() {
               placeholder="Customer Phone Number"
               className="w-full input input-bordered"
               name="phone"
-              value={newLead.phone}
-              onChange={(e: any) => handleUpdateState(e)}
+              value={phone}
+              onChange={(e: any) =>
+                useLeadStore.setState({ phone: e.target.value })
+              }
             />
           </div>
 
