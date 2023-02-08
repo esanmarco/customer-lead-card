@@ -1,8 +1,8 @@
-import getSession from "@/server/utils/getSession";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 
 export default async function Navbar() {
-  const session = await getSession();
+  const session = await getServerSession();
   return (
     <div className="flex flex-row justify-between shadow navbar bg-base-100">
       <Link
