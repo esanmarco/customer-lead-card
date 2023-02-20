@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
@@ -14,7 +15,7 @@ export default async function Navbar() {
 
       <div className="avatar placeholder-slate-100">
         <div className="w-10 rounded-full bg-neutral-focus text-neutral-content">
-          <img className="m-0" src={session?.user?.image ?? ""} />
+          <img alt="avatar" className="m-0" src={session?.user?.image ?? ""} />
         </div>
       </div>
     </div>
