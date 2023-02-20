@@ -1,4 +1,4 @@
-import { lead, PrismaClient } from "@prisma/client";
+import { Lead, PrismaClient } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
@@ -21,11 +21,21 @@ export default async function handler(
     return res.status(400).json({ error: "Missing name or email" });
   }
 
-  const newLead = await prisma.lead.create({
+  const user = await prisma.user.findUnique({
+    where: {
+      email: session.user.email as string,
+    },
+  });
+
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  const newLead: Lead = await prisma.lead.create({
     data: {
       ...body,
-      owner: session.user.email,
-    } as lead,
+      userId: user.id,
+    },
   });
 
   res.status(200).json({ lead: newLead });

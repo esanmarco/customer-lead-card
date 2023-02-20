@@ -2,12 +2,15 @@
 
 import { useLeadStore } from "@/stores/useLeadStore";
 import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { defaultState } from "@/stores/useLeadStore";
 
 export default function AddNewCard() {
   const { name, companyName, email, phone } = useLeadStore();
+  const { refresh } = useRouter();
 
   const { mutate, isLoading } = useMutation(["new-lead"], async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lead`, {
+    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lead`, {
       method: "POST",
       body: JSON.stringify({
         name,
@@ -16,7 +19,11 @@ export default function AddNewCard() {
         phone,
       }),
     });
-    return await res.json();
+    // rehydrate the cache
+    refresh();
+    // close the modal
+    (document.getElementById("new-card") as HTMLInputElement).checked = false;
+    useLeadStore.setState(defaultState);
   });
 
   return (

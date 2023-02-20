@@ -8,12 +8,22 @@ datasource db {
   relationMode = "prisma"
 }
 
-model lead {
-  id          Int      @id @default(autoincrement())
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  leads     Lead[]
+}
+
+model Lead {
+  id          String   @id @default(cuid())
   name        String
   email       String
   phone       String
   companyName String
-  owner       String
   createdAt   DateTime @default(now())
+  User        User?     @relation(fields: [userId], references: [id])
+  userId      String?
+
+  @@index([userId])
 }
