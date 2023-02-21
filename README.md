@@ -1,5 +1,15 @@
 This is a Fullstack NextJS application for generating Leads behind an auth-wall
 
+## Tech Stack
+
+- NextJS 13 (in `app` dir)
+- Next-Auth (auth)
+- TailwindCSS + DaisyUI (UI)
+- Tanstack Query (for mutations)
+- Planetscale (DB hosting)
+- Prisma (db ORM)
+- Vercel (hosting)
+
 ## Steps to reproduce
 
 - Setup and install NextJS application [>>](https://nextjs.org/docs/getting-started)
