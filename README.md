@@ -28,3 +28,7 @@ This is a Fullstack NextJS application for generating Leads behind an auth-wall
 - Build UI for Dashboard Page (modal for adding new leads)
 - Create GET request & map through leads coming from DB
 - Setup Vercel project & deployment
+
+## Hosted Example:
+
+[https://customer-lead-card.vercel.app/dashboard](https://customer-lead-card.vercel.app/dashboard)
