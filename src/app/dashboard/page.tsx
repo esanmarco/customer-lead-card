@@ -1,6 +1,11 @@
+import { userWithLeads } from "@/server/leads";
+import { Lead, User } from "@prisma/client";
 import AddNewCard from "./addNewCard";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+  const request = await userWithLeads();
+  const leads = request!.leads as Lead[];
+
   return (
     <>
       <label
@@ -27,23 +32,22 @@ export default function Dashboard() {
       <AddNewCard />
 
       <div className="grid grid-cols-1 gap-4 mt-5 sm:grid-cols-2 lg:grid-cols-3 md:mt-10">
-        <div className="shadow card bg-base-200">
-          <div className="card-body">
-            <h2 className="m-0 card-title">Customer Full Name</h2>
-            <p className="m-0 card-subtitle">Customer Company Name</p>
-            <ul className="m-0">
-              <li>
-                <a href={`mailto:hello@gmail.com`} className="text-accent">
-                  hello@gmail.com
-                </a>
-              </li>
-              <li>480-555-1212</li>
-            </ul>
-            <p className="pt-4 m-0 text-sm border-t border-gray-700">
-              Customer Notes
-            </p>
+        {leads.map((lead, index) => (
+          <div className="shadow card bg-base-200" key={`lead-${index}`}>
+            <div className="card-body">
+              <h2 className="m-0 card-title">{lead.name}</h2>
+              <p className="m-0 card-subtitle">{lead.companyName}</p>
+              <ul className="m-0">
+                <li>
+                  <a href={`mailto:${lead.email}`} className="text-accent">
+                    {lead.email}
+                  </a>
+                </li>
+                <li>{lead.phone}</li>
+              </ul>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </>
   );

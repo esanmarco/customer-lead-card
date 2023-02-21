@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import { asyncComponent } from "@/utils/hoc";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
-export default async function Navbar() {
+async function Navbar() {
   const session = await getServerSession();
   return (
     <div className="flex flex-row justify-between shadow navbar bg-base-100">
@@ -21,3 +22,5 @@ export default async function Navbar() {
     </div>
   );
 }
+
+export default asyncComponent(Navbar);
