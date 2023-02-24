@@ -1,6 +1,10 @@
 import { getUserAccout } from "@/server/user";
 import Navbar from "./navbar";
 
+export const metadata = {
+  title: "Lead Generation App",
+};
+
 export default async function DashboardLayout({
   children,
 }: {

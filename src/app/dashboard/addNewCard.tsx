@@ -10,7 +10,7 @@ export default function AddNewCard() {
   const { refresh } = useRouter();
 
   const { mutate, isLoading } = useMutation(["new-lead"], async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/lead`, {
+    await fetch(`/api/leads`, {
       method: "POST",
       body: JSON.stringify({
         name,

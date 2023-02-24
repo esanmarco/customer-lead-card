@@ -8,7 +8,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="night">
-      <head />
       <body>
         <div className="w-full prose max-w-none">
           <QueryWrapper>{children}</QueryWrapper>

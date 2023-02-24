@@ -1,15 +1,15 @@
-import { PrismaClient } from "@prisma/client";
+import { Lead, PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 const prisma = new PrismaClient();
 
-export const userWithLeads = async () => {
+export const getLeads = async () => {
   const session = await getServerSession();
   if (!session?.user) {
     return null;
   }
 
-  const userWithLeads = await prisma.user.findUnique({
+  const res = await prisma.user.findUnique({
     where: {
       email: session.user.email as string,
     },
@@ -18,5 +18,5 @@ export const userWithLeads = async () => {
     },
   });
 
-  return userWithLeads;
+  return res?.leads as Lead[];
 };
